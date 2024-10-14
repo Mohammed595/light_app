@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return const MaterialApp(
           home: Scaffold(
-            body: MenuScreen(),
+            body: MenueScreen(),
           ),
         );
       },

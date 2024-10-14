@@ -4,21 +4,22 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:light_app/constants/enums.dart';
 import 'package:light_app/features/menue/controllers/meal_controller.dart';
 import 'package:light_app/features/menue/presentation/indexing_hepler.dart';
-import 'package:light_app/features/menue/presentation/widgets/deal_type_widget.dart';
-import 'package:light_app/features/menue/presentation/widgets/delivery_details_widget.dart';
-import 'package:light_app/features/menue/presentation/widgets/menu_app_bar_widget.dart';
-import 'package:light_app/features/menue/presentation/widgets/preview_meal_widget.dart';
-import 'package:light_app/features/menue/presentation/widgets/suspense_image_widget.dart';
+import 'package:light_app/features/menue/presentation/screens/meal_details_screen.dart';
+import 'package:light_app/features/menue/presentation/widgets/menue_widgets/deal_type_widget.dart';
+import 'package:light_app/features/menue/presentation/widgets/menue_widgets/delivery_details_widget.dart';
+import 'package:light_app/features/menue/presentation/widgets/menue_widgets/menu_app_bar_widget.dart';
+import 'package:light_app/features/menue/presentation/widgets/menue_widgets/preview_meal_widget.dart';
+import 'package:light_app/features/menue/presentation/widgets/menue_widgets/suspense_image_widget.dart';
 
 
-class MenuScreen extends ConsumerStatefulWidget {
-  const MenuScreen({super.key});
+class MenueScreen extends ConsumerStatefulWidget {
+  const MenueScreen({super.key});
 
   @override
-  ConsumerState<MenuScreen> createState() => _MenuScreenState();
+  ConsumerState<MenueScreen> createState() => _MenuScreenState();
 }
 
-class _MenuScreenState extends ConsumerState<MenuScreen> {
+class _MenuScreenState extends ConsumerState<MenueScreen> {
   int myIndex = 0;
 
   @override
@@ -60,11 +61,17 @@ class _MenuScreenState extends ConsumerState<MenuScreen> {
                             return Column(
                               children: [
                                 SizedBox(height: 2.h),
-                                PreviewMealWidget(
-                                  mealImg: meal.mealImg,
-                                  mealName: meal.mealName,
-                                  mealDesc: meal.mealDesc,
-                                  mealPrice: meal.mealPrice
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(context, 
+                                    MaterialPageRoute(builder: (context) => MealDetilsScreen(meal: meal),));
+                                  },
+                                  child: PreviewMealWidget(
+                                    mealImg: meal.mealImg,
+                                    mealName: meal.mealName,
+                                    mealDesc: meal.mealDesc,
+                                    mealPrice: meal.mealPrice
+                                  ),
                                 ),
                                 SizedBox(height: 2.h),
                                 const Divider(
